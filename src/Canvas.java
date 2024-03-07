@@ -43,16 +43,20 @@ public class Canvas extends JFrame {
         if (Math.abs(m) <= 1){
             double y = y1;
             for(int x = x1; x <= x2; x++){
-                buffer.setRGB(x, (int) y, a.getRGB());
+                pixel(x, (int) y, a);
                 y += m;
             }
         }
         else {
             double x = x1;
             for(int y = y1; y <= y2; y++){
-                buffer.setRGB((int) x, y, a.getRGB());
+                pixel((int) x, y, a);
                 x += (1/m);
             }
         }
+    }
+
+    private void pixel(int x, int y, Color a) {
+        buffer.setRGB(x, y, a.getRGB());
     }
 }
