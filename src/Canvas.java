@@ -16,16 +16,16 @@ public class Canvas extends JFrame {
         setLocationRelativeTo(null);
         buffer = new BufferedImage(panel.getWidth(),panel.getHeight(),BufferedImage.TYPE_INT_ARGB);
         add(panel);
+        setVisible(true);
     }
 
     public void paint(Graphics g) {
         super.paint(g);
-        getGraphics().drawImage(buffer,0,0,panel);
         lineaDDA(100, 100, 500, 500, Color.red);
+        getGraphics().drawImage(buffer,0,0,panel);
     }
 
     public void lineaDDA(int x1, int y1, int x2, int y2, Color a){
-        getGraphics().drawImage(buffer,0,0,panel);
         int dy = y2 - y1;
         int dx = x2 - x1;
         double m = (double) dy /dx;
@@ -46,7 +46,8 @@ public class Canvas extends JFrame {
                 buffer.setRGB(x, (int) y, a.getRGB());
                 y += m;
             }
-        }else {
+        }
+        else {
             double x = x1;
             for(int y = y1; y <= y2; y++){
                 buffer.setRGB((int) x, y, a.getRGB());
