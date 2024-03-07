@@ -21,15 +21,15 @@ public class Canvas extends JFrame {
     public void paint(Graphics g) {
         super.paint(g);
         getGraphics().drawImage(buffer,0,0,panel);
-        lineDDA(100, 100, 500, 500, Color.red);
+        lineaDDA(100, 100, 500, 500, Color.red);
     }
 
-    public void lineDDA(int x1, int y1, int x2, int y2, Color a){
+    public void lineaDDA(int x1, int y1, int x2, int y2, Color a){
         getGraphics().drawImage(buffer,0,0,panel);
         int dy = y2 - y1;
         int dx = x2 - x1;
         double m = (double) dy /dx;
-        System.out.println("M DDA: " + m);
+        System.out.println("Pendiente: " + m);
 
         if (x1 > x2 || y1 > y2) {
             int tempX = x1;
@@ -43,19 +43,15 @@ public class Canvas extends JFrame {
         if (Math.abs(m) <= 1){
             double y = y1;
             for(int x = x1; x <= x2; x++){
-                putPixel(x, (int) y, a);
+                buffer.setRGB(x, (int) y, a.getRGB());
                 y += m;
             }
         }else {
             double x = x1;
             for(int y = y1; y <= y2; y++){
-                putPixel((int) x, y, a);
+                buffer.setRGB((int) x, y, a.getRGB());
                 x += (1/m);
             }
         }
-
-    }
-    private void putPixel(int x, int y, Color a){
-        buffer.setRGB(x,y, a.getRGB());
     }
 }
